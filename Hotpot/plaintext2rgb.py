@@ -1,7 +1,7 @@
 #first contact
 from ctypes import sizeof
 from PIL import Image
-import numpy as n
+import math as m
 
 
 def test():
@@ -10,7 +10,7 @@ def test():
     text = file.read()  
     file.close()            # this is dumb, should just read from file instead of dumping it into a 
     text = list(text)       #rudimentary fix, turn text into list so we can manage the characters
-    size = n.floor(n.sqrt(len(text)//3))     #will only work for 5px images for now
+    size = m.floor(m.sqrt(len(text)//3))     #will only work for 5px images for now
     print(size)
     img =  Image.new('RGB', (size,size), 'white')
     pixels = img.load() # create the pixel map
