@@ -8,12 +8,12 @@ import math as m
 #TODO leer de carpeta de tests y escupir pngs de mismo nombre
 
 def test():
-    f='qran.txt'
+    f='test2.txt'
     file = open(f)
     text = file.read()  
     file.close()            # this is dumb, should just read from file instead of dumping it into a 
     text = list(text)       #rudimentary fix, turn text into list so we can manage the characters
-    size = m.floor(m.sqrt(len(text)//3))     #will only work for 5px images for now
+    size = m.floor(m.sqrt(len(text)//3))     #will only work for square images for now
     print(size)
     # for elem in text:
     #     print(ord(elem))
@@ -27,7 +27,20 @@ def test():
             c+=1
         c+=1    
     img.show()
-    img.save('qran1px1c.png')
-        
+    img.save('test2.png')
+    
+test()        
+#stackoverflow random palette example
+def palette_tests(textname):
+    # Load document as bytes
+    qran = pathlib.Path(textname + 'txt').read_bytes()
+    size = m.floor(m.sqrt(len(qran)))     #round the value for a square image
 
-test()
+    # Make palette image from bytes
+    img = Image.frombuffer('P', (size,size), qran, "raw", 'P', 0, 1)
+
+    # Add random palette of 256 RGB triplets to image
+    palette = np.random.randint(0,256, 768, np.uint8)
+    img.putpalette(palette)
+
+    img.save(textname + 'png')
