@@ -5,6 +5,7 @@ import math as m
 
 #TODO crear el concepto en una funcion tweakeable
 #TODO no usar una lista si no leer directamente del archivo
+#TODO leer de carpeta de tests y escupir pngs de mismo nombre
 
 def test():
     f='qran.txt'
